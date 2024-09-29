@@ -73,15 +73,7 @@
                         </style>
                         <?php $sn=0 ?>
                         @forelse($customerMembership as $key=>$row)
-                            <?php
-                                $customer_sessions = DB::table('customer_sessions')
-                                                            ->where('package_id',$row->package_id)
-                                                            ->where('customer_id',$row->customer_id)
-                                                            ->where('membership_id',$row->id)
-                                                        ->get();
-
-                                // $customer_session = $row->sessions;
-                            ?>
+                        <?php $customer_sessions = DB::table('customer_sessions')->where('package_id',$row->package_id)->where('customer_id',$row->customer_id)->where('membership_id',$row->id)->get() ?>
                             <?php $crossSale=0 ?>
                             @foreach ($customer_sessions as $checkdata)
                                 <?php $crossSale=0 ?>
@@ -100,21 +92,17 @@
 
 
                                     </td>
-                                    {{-- @php $customer_name=DB::table('customers')->where('id',$row->customer_id)->first() @endphp --}}
+                                    <?php $customer_name=DB::table('customers')->where('id',$row->customer_id)->first() ?>
                                     <td class="">
-                                        {{$row->customers->customer_name}}
+                                        {{$customer_name->customer_name}}
                                     </td>
 
                                     <td class="">
-                                        <?php
-                                            // $membership = DB::table('packages')->where('id',$row->package_id)->first()
-                                        ?>
-                                        {{$row?->package?->package_name}}
+                                        <?php $membership = DB::table('packages')->where('id',$row->package_id)->first() ?>
+                                        {{$membership?->package_name}}
                                     </td>
-                                    <?php
-                                    // $branch = DB::table('branches')->where('id',$row->branch_id)->first()
-                                    ?>
-                                    <td class="">{{$row?->branch->branch}}</td>
+                                    <?php $branch = DB::table('branches')->where('id',$row->branch_id)->first() ?>
+                                    <td class="">{{$branch->branch}}</td>
                                     <td class="">{{Carbon\Carbon::parse( $row->created_at)->format('M j   ,Y')}}</td>
                                     <td class="">
                                         @foreach ($customer_sessions as $customer_session)
