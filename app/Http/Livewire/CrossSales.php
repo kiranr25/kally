@@ -73,13 +73,15 @@ class CrossSales extends Component
 
         // $customerMembership= CustomerMembership::paginate(20);
         // $customer_session = CustomerSession::get('membership_id')->toArray();
-        $customerMembership = CustomerMembership::with([
-                'customers',
-                'package',
-                'branch',
-                // 'sessions'
-            ])
-            ->when($this->start_date, function ($q) {
+        $customerMembership = CustomerMembership::
+        
+            // with([
+            //     'customers',
+            //     'package',
+            //     'branch',
+            //     // 'sessions'
+            // ])->
+            when($this->start_date, function ($q) {
                 $q->when($this->end_date, function ($q) {
                     return $q->whereBetween(DB::raw('DATE(customer_memberships.created_at)'), array($this->start_date, $this->end_date));
             });
