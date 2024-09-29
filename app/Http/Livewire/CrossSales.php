@@ -77,7 +77,7 @@ class CrossSales extends Component
                 'customers',
                 'package',
                 'branch',
-                'sessions'
+                // 'sessions'
             ])
             ->when($this->start_date, function ($q) {
                 $q->when($this->end_date, function ($q) {

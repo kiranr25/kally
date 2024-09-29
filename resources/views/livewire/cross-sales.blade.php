@@ -74,13 +74,13 @@
                         <?php $sn=0 ?>
                         @forelse($customerMembership as $key=>$row)
                             <?php
-                                // $customer_sessions = DB::table('customer_sessions')
-                                //                             ->where('package_id',$row->package_id)
-                                //                             ->where('customer_id',$row->customer_id)
-                                //                             ->where('membership_id',$row->id)
-                                //                         ->get();
+                                $customer_sessions = DB::table('customer_sessions')
+                                                            ->where('package_id',$row->package_id)
+                                                            ->where('customer_id',$row->customer_id)
+                                                            ->where('membership_id',$row->id)
+                                                        ->get();
 
-                                $customer_session = $row->sessions;
+                                // $customer_session = $row->sessions;
                             ?>
                             <?php $crossSale=0 ?>
                             @foreach ($customer_sessions as $checkdata)
