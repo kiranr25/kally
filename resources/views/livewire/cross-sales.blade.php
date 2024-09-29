@@ -102,7 +102,7 @@
                                     </td>
                                     {{-- @php $customer_name=DB::table('customers')->where('id',$row->customer_id)->first() @endphp --}}
                                     <td class="">
-                                        {{$row->customers->name}}
+                                        {{$row->customers->customer_name}}
                                     </td>
 
                                     <td class="">
